@@ -1,0 +1,4 @@
+flask==3.1.0
+python-keycloak==5.3.1
+flask-cors
+pyjwt
