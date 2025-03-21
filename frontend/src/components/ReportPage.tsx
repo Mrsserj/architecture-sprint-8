@@ -5,6 +5,7 @@ const ReportPage: React.FC = () => {
   const { keycloak, initialized } = useKeycloak();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState<string | null>(null);
 
   const downloadReport = async () => {
     if (!keycloak?.token) {
@@ -22,7 +23,13 @@ const ReportPage: React.FC = () => {
         }
       });
 
-      
+      const report = await response.text();
+      if (response.ok) {
+          setSuccess(`Report successfully generated: ${report}`);
+      } else {
+          setError(`Can not generate report: ${report}`);
+      }
+
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An error occurred');
     } finally {
@@ -65,6 +72,11 @@ const ReportPage: React.FC = () => {
         {error && (
           <div className="mt-4 p-4 bg-red-100 text-red-700 rounded">
             {error}
+          </div>
+        )}
+        {success && (
+            <div className="mt-4 p-4 bg-green-100 text-green-700 rounded">
+            {success}
           </div>
         )}
       </div>
