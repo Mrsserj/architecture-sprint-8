@@ -1,10 +1,10 @@
 FROM python:3.9-slim-buster
 
-WORKDIR /app
+WORKDIR /api
 
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY . .
+COPY . /api
 
-CMD ["python", "app.py"]
+CMD python api.py

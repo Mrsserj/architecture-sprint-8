@@ -40,7 +40,9 @@ services:
       REACT_APP_KEYCLOAK_REALM: reports-realm
       REACT_APP_KEYCLOAK_CLIENT_ID: reports-frontend
   app:
-    build: .
+    build: 
+      context: ./api
+      dockerfile: Dockerfile
     ports:
       - "8000:8000"
     environment:
@@ -50,5 +52,3 @@ services:
     depends_on:
       - keycloak
       
-volumes:
-  minio_storage: {}
