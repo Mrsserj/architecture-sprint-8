@@ -80,7 +80,6 @@ def auth_required(handler_method):
                 return
 
             # Проверка роли
-            logger.debug(f"Decoded token: {decoded_token}, KEYCLOAK_CLIENT_ID: {KEYCLOAK_CLIENT_ID}")
             if "realm_access" in decoded_token:
                 roles = decoded_token["realm_access"].get("roles", [])
                 if "prothetic_user" not in roles:
