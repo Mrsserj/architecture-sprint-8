@@ -36,7 +36,7 @@ services:
       - "3000:3000"
     environment:
       REACT_APP_API_URL: http://localhost:8000
-      REACT_APP_KEYCLOAK_URL: http://localhost:8080
+      REACT_APP_KEYCLOAK_URL: http://keycloak:8080
       REACT_APP_KEYCLOAK_REALM: reports-realm
       REACT_APP_KEYCLOAK_CLIENT_ID: reports-frontend
   app:
@@ -47,8 +47,8 @@ services:
       - "8000:8000"
     environment:
       - KEYCLOAK_REALM=reports-realm
-      - KEYCLOAK_CLIENT_ID=your_client_id
-      - KEYCLOAK_PUBLIC_KEY_URL=http://architecture-sprint-8-keycloak-1:8080
+      - KEYCLOAK_CLIENT_ID=reports-api
+      - KEYCLOAK_PUBLIC_KEY_URL=http://keycloak:8080/realms/reports-realm/protocol/openid-connect/certs
     depends_on:
       - keycloak
       
